@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6ix Lang — a toy programming language from the 6ix</title>
+  <meta name="description" content="6ix Lang is a toy programming language written in Toronto slang. Open with wagwan, close with say less. Try it in your browser.">
+  <meta name="author" content="@shubhbhatia02">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f17'/%3E%3Ctext x='32' y='45' font-size='38' font-family='Georgia' font-weight='bold' text-anchor='middle' fill='%23f2b63d'%3E6%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <svg class="tower" viewBox="0 0 60 120" aria-hidden="true" fill="currentColor">
+        <rect x="28.75" y="0" width="2.5" height="26"/>
+        <path d="M30 24 L38 34 L22 34 Z"/>
+        <rect x="18" y="34" width="24" height="9" rx="4.5"/>
+        <rect x="27" y="43" width="6" height="3"/>
+        <rect x="21" y="46" width="18" height="4" rx="2"/>
+        <path d="M27 50 L33 50 L36 104 L24 104 Z"/>
+        <path d="M18 112 Q30 96 42 112 L42 114 L18 114 Z"/>
+      </svg>
+      <div class="wordmark">
+        <h1><span class="six">6ix</span> Lang</h1>
+        <p class="tagline">A toy programming language in Toronto slang. Open with <code>wagwan</code>, close with <code>say less</code>.</p>
+      </div>
+      <nav class="header-links">
+        <a href="#cheatsheet">Learn it</a>
+        <a href="https://github.com/shubhbhatia02/6ix-lang">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="toolbar">
+        <button id="run" class="btn primary">▶ Run it</button>
+        <select id="examples" class="btn" aria-label="Load an example">
+          <option value="" disabled selected>load an example…</option>
+        </select>
+        <button id="share" class="btn">🔗 Share</button>
+        <button id="clear" class="btn">Clear output</button>
+        <span class="hint"><kbd>Ctrl</kbd> + <kbd>Enter</kbd> runs the script</span>
+      </div>
+
+      <div class="panes">
+        <div class="pane">
+          <div class="pane-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="pane-title">script.6ix</span>
+          </div>
+          <div class="editor-wrap">
+            <div id="gutter">1</div>
+            <div class="editor-scroll">
+              <pre id="highlight" aria-hidden="true"><code id="highlight-code"></code></pre>
+              <textarea id="editor" spellcheck="false" autocomplete="off" autocapitalize="off" wrap="off" aria-label="6ix Lang code editor"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="pane">
+          <div class="pane-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="pane-title">output</span>
+          </div>
+          <div id="output" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <section id="cheatsheet">
+        <h2>Learn it in <span class="accent">two-twos</span></h2>
+        <p class="section-sub">The whole language on one page. Every script opens with <code>wagwan</code> and closes with <code>say less</code> — everything in between is up to you.</p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Open &amp; close — <span class="kw">wagwan</span> / <span class="kw">say less</span></h3>
+            <p>Greet mans on the way in, dip politely on the way out.</p>
+            <pre><code class="six">wagwan
+
+  big up "hello from the 6ix"
+
+say less</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>Print — <span class="kw">big up</span></h3>
+            <p>Put anything on the console: text, numbers, lists, whatever.</p>
+            <pre><code class="six">big up "wagwan, world!"
+big up 416
+big up "2 + 2 is " + (2 + 2)</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>Variables — <span class="kw">ting</span></h3>
+            <p>Declare a ting with <code>ting … is</code>, update it with plain <code>is</code>.</p>
+            <pre><code class="six">ting city is "Toronto"
+ting area is 416
+area is area + 231
+big up city + " runs on " + area</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>If / else — <span class="kw">ahlie</span> / <span class="kw">nahfam</span></h3>
+            <p>"Ahlie?" checks if it's true. "Nahfam" is what happens when it's not.</p>
+            <pre><code class="six">ahlie (temp < 0) {
+  big up "bare cold out"
+} nahfam ahlie (temp > 25) {
+  big up "patio season"
+} nahfam {
+  big up "regular Toronto weather"
+}</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>While — <span class="kw">run it back</span></h3>
+            <p>Keeps running it back while the condition stays true.</p>
+            <pre><code class="six">ting n is 3
+run it back (n > 0) {
+  big up n
+  n is n - 1
+}</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>For — <span class="kw">two-twos</span></h3>
+            <p>A counted loop, done in two-twos. Add <code>by</code> to set the step; count down by flipping the range.</p>
+            <pre><code class="six">two-twos i from 1 to 5 {
+  big up i
+}
+two-twos j from 10 to 0 by 2 {
+  big up j
+}</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>Functions — <span class="kw">big man ting</span></h3>
+            <p>Define one with <code>big man ting</code>, hand the answer back with <code>dash</code>.</p>
+            <pre><code class="six">big man ting linkUp(name) {
+  dash "wagwan " + name
+}
+
+big up linkUp("fam")</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>Loop control — <span class="kw">dip</span> / <span class="kw">gwan</span></h3>
+            <p><code>dip</code> breaks out of the loop, <code>gwan</code> skips to the next round.</p>
+            <pre><code class="six">two-twos n from 1 to 10 {
+  ahlie (n == 3) { gwan }
+  ahlie (n == 6) { dip }
+  big up n
+}</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>Lists</h3>
+            <p>Square brackets, indexed from 0. <code>chuck</code> adds to the end, <code>bare</code> counts.</p>
+            <pre><code class="six">ting squad is ["dot", "sauga", "vaughan"]
+chuck(squad, "brampton")
+big up squad[0]
+big up "squad is " + bare(squad) + " deep"</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>Truth &amp; nothing — <span class="kw">styll</span> / <span class="kw">cap</span> / <span class="kw">ghost</span></h3>
+            <p>True is <code>styll</code>, false is <code>cap</code>, and nothing at all is <code>ghost</code>.</p>
+            <pre><code class="six">ting realTalk is styll
+ting rumour is cap
+ting plans is ghost
+ahlie (realTalk and not rumour) {
+  big up "no cap detected"
+}</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>Comments — <span class="kw">chattin</span></h3>
+            <p>Anything after <code>chattin</code> is just chatting — the interpreter ignores it.</p>
+            <pre><code class="six">chattin this line does nothing
+big up "this one runs"  chattin this part doesn't</code></pre>
+          </div>
+
+          <div class="card">
+            <h3>Input — <span class="kw">pree</span></h3>
+            <p>Ask the user for something. Comes back as text — use <code>num()</code> if you need a number.</p>
+            <pre><code class="six">ting name is pree("who dis?")
+big up "wagwan " + name
+ting age is num(pree("how old?"))
+big up "next year you're " + (age + 1)</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="builtins">
+        <h2>The <span class="accent">toolbox</span></h2>
+        <p class="section-sub">Built-in big man tings that come with the language — no setup needed.</p>
+        <div class="card table-wrap">
+          <table class="builtins-table">
+            <thead>
+              <tr><th>Function</th><th>What it does</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>big up x</td><td>Print to the console</td><td><code>big up "safe"</code></td></tr>
+              <tr><td>pree(question)</td><td>Ask the user for input (returns text)</td><td><code>pree("who dis?")</code></td></tr>
+              <tr><td>bare(x)</td><td>Length of a list or text</td><td><code>bare([1,2,3])</code> → 3</td></tr>
+              <tr><td>chuck(list, item)</td><td>Add an item to the end of a list</td><td><code>chuck(squad, "fam")</code></td></tr>
+              <tr><td>sumn(list)</td><td>Add up a list of numbers</td><td><code>sumn([4,1,6])</code> → 11</td></tr>
+              <tr><td>highkey(a, b)</td><td>The bigger of the two (max)</td><td><code>highkey(4, 16)</code> → 16</td></tr>
+              <tr><td>lowkey(a, b)</td><td>The smaller of the two (min)</td><td><code>lowkey(4, 16)</code> → 4</td></tr>
+              <tr><td>pattern(list)</td><td>Sort a list (returns a new one)</td><td><code>pattern([6,1,4])</code> → [1, 4, 6]</td></tr>
+              <tr><td>flip(x)</td><td>Reverse a list or text</td><td><code>flip("six")</code> → "xis"</td></tr>
+              <tr><td>loud(text)</td><td>UPPERCASE</td><td><code>loud("dun kno")</code></td></tr>
+              <tr><td>hush(text)</td><td>lowercase</td><td><code>hush("SAY LESS")</code></td></tr>
+              <tr><td>chop(text, sep)</td><td>Split text into a list</td><td><code>chop("a,b", ",")</code></td></tr>
+              <tr><td>link(list, sep)</td><td>Join a list into text</td><td><code>link(["4","1","6"], "")</code></td></tr>
+              <tr><td>num(x)</td><td>Convert to a number</td><td><code>num("416")</code> → 416</td></tr>
+              <tr><td>text(x)</td><td>Convert to text</td><td><code>text(416)</code> → "416"</td></tr>
+              <tr><td>roll(n)</td><td>Random whole number from 1 to n</td><td><code>roll(6)</code></td></tr>
+              <tr><td>round(x) / abs(x)</td><td>Everyday maths</td><td><code>round(4.16)</code> → 4</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <h2>What's the <span class="accent">deal</span>?</h2>
+        <p><strong>6ix Lang</strong> is a real (toy) programming language: the code you type is run by a proper interpreter — a lexer, a recursive-descent parser, and a tree-walking evaluator — written in plain JavaScript, entirely in your browser. Nothing is sent to a server.</p>
+        <p>When you mess up, the error messages talk back in slang: forget the <code>wagwan</code> and it'll ask why you're just startin' to chat. Loops that run back forever get cut off before they freeze your tab, styll.</p>
+        <p>Made for jokes and for learning how interpreters work. Peep the source, fork it, and swap the keywords for your own city's slang if you want — the whole language lives in one readable file.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Built in the 6ix with a lexer, a parser, and bare love — by <a href="https://github.com/shubhbhatia02">@shubhbhatia02</a> · MIT License · say less.</p>
+    </footer>
+  </div>
+
+  <script src="sixlang.js"></script>
+  <script src="playground.js"></script>
+</body>
+</html>

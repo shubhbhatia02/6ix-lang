@@ -1,0 +1,19 @@
+wagwan
+
+  ting mandem is ["Drake", "Kawhi", "Vladdy", "Auston"]
+  big up "squad is " + bare(mandem) + " deep"
+
+  chuck(mandem, "DeMar")
+  big up "DeMar reached — now it's " + bare(mandem) + " deep"
+
+  two-twos i from 0 to bare(mandem) - 1 {
+    big up "big up " + mandem[i]
+  }
+
+  chattin the toolbox has more tools, styll
+  ting scores is [88, 64, 95, 71]
+  big up "sumn: " + sumn(scores)
+  big up "pattern: " + pattern(scores)
+  big up "highkey: " + highkey(95, 71) + ", lowkey: " + lowkey(95, 71)
+
+say less

@@ -1,0 +1,16 @@
+wagwan
+
+  chattin FizzBuzz, 6ix style
+  two-twos i from 1 to 20 {
+    ahlie (i % 15 == 0) {
+      big up "drizzybuzz"
+    } nahfam ahlie (i % 3 == 0) {
+      big up "drizzy"
+    } nahfam ahlie (i % 5 == 0) {
+      big up "buzz"
+    } nahfam {
+      big up i
+    }
+  }
+
+say less

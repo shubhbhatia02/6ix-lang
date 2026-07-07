@@ -1,0 +1,392 @@
+/* 6ix Lang playground — 6ix night theme. Author: @shubhbhatia02 */
+
+:root {
+  --bg: #0b0f17;
+  --panel: #111827;
+  --panel-2: #0d1320;
+  --border: #1f2a3d;
+  --text: #e8edf5;
+  --dim: #8b98ad;
+  --gold: #f2b63d;
+  --gold-dark: #d99b1f;
+  --blue: #5aa9ff;
+  --green: #6ee7a0;
+  --red: #ff7676;
+  --purple: #c792ea;
+  --mono: 'Cascadia Code', 'JetBrains Mono', 'SF Mono', Consolas, 'Liberation Mono', monospace;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background:
+    radial-gradient(1100px 550px at 85% -10%, #16233f 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, #131a2b 0%, transparent 55%),
+    var(--bg);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1px 6px;
+}
+
+/* ---------- Header ---------- */
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 40px 0 28px;
+}
+
+.tower {
+  width: 34px;
+  height: 68px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.wordmark h1 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.wordmark h1 .six { color: var(--gold); }
+
+.tagline {
+  color: var(--dim);
+  font-size: 1rem;
+  max-width: 640px;
+}
+
+.header-links {
+  margin-left: auto;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+/* ---------- Toolbar ---------- */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 14px;
+}
+
+.btn {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.05s;
+}
+
+.btn:hover { border-color: var(--gold); }
+.btn:active { transform: translateY(1px); }
+
+.btn.primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #16130a;
+}
+
+.btn.primary:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
+
+select.btn {
+  appearance: none;
+  padding-right: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238b98ad'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.hint {
+  color: var(--dim);
+  font-size: 0.85rem;
+  margin-left: auto;
+}
+
+kbd {
+  font-family: var(--mono);
+  font-size: 0.8em;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  padding: 1px 6px;
+}
+
+/* ---------- Panes ---------- */
+
+.panes {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 14px;
+}
+
+.pane {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel-2);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--dim);
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.r { background: #ff6058; }
+.dot.y { background: var(--gold); }
+.dot.g { background: #29c73f; }
+
+.pane-title { margin-left: 6px; }
+
+/* ---------- Editor ---------- */
+
+.editor-wrap {
+  position: relative;
+  display: flex;
+  height: 480px;
+}
+
+#gutter {
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 14px 0;
+  width: 44px;
+  text-align: right;
+  color: #45526b;
+  background: var(--panel-2);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+  user-select: none;
+  white-space: pre;
+  flex-shrink: 0;
+  padding-right: 10px;
+}
+
+.editor-scroll {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+#editor, #highlight {
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.6;
+  tab-size: 2;
+  padding: 14px 16px;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-wrap: normal;
+}
+
+#highlight {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--text);
+}
+
+#highlight code { background: none; border: none; padding: 0; font-size: inherit; }
+
+#editor {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--gold);
+  overflow: auto;
+}
+
+#editor::selection { background: rgba(90, 169, 255, 0.28); }
+#editor::placeholder { color: var(--dim); }
+
+/* Syntax colours */
+.tok-kw { color: var(--gold); font-weight: 600; }
+.tok-str { color: var(--green); }
+.tok-num { color: var(--purple); }
+.tok-com { color: #5b6b85; font-style: italic; }
+.tok-atom { color: var(--red); }
+.tok-fn { color: var(--blue); }
+
+/* ---------- Output ---------- */
+
+#output {
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 14px 16px;
+  height: 480px;
+  overflow: auto;
+  background: var(--panel);
+}
+
+#output .line { white-space: pre-wrap; word-break: break-word; }
+#output .line.err { color: var(--red); }
+#output .line.sys { color: var(--dim); font-style: italic; }
+
+/* ---------- Sections ---------- */
+
+section { margin-top: 54px; }
+
+section > h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+section > h2 .accent { color: var(--gold); }
+
+.section-sub { color: var(--dim); margin-bottom: 22px; max-width: 720px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.card h3 .kw { color: var(--gold); font-family: var(--mono); font-size: 0.95em; }
+
+.card p { color: var(--dim); font-size: 0.9rem; margin-bottom: 10px; }
+
+.card pre {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 12px 14px;
+  overflow-x: auto;
+}
+
+.card pre code {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  background: none;
+  border: none;
+  padding: 0;
+  white-space: pre;
+}
+
+.builtins-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.builtins-table th, .builtins-table td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.builtins-table th { color: var(--dim); font-weight: 600; }
+.builtins-table td:first-child { font-family: var(--mono); color: var(--blue); white-space: nowrap; }
+
+.table-wrap { overflow-x: auto; }
+
+.about p { max-width: 760px; color: var(--dim); margin-bottom: 12px; }
+.about strong { color: var(--text); }
+
+/* ---------- Toast ---------- */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 16px);
+  background: var(--gold);
+  color: #16130a;
+  font-weight: 600;
+  padding: 11px 20px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 50;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Footer ---------- */
+
+footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--dim);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 920px) {
+  .panes { grid-template-columns: 1fr; }
+  .editor-wrap, #output { height: 380px; }
+  header { flex-wrap: wrap; }
+  .header-links { margin-left: 0; width: 100%; }
+}

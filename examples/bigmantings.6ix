@@ -1,0 +1,18 @@
+wagwan
+
+  big man ting spud(name) {
+    dash "wagwan " + name + ", big up yourself"
+  }
+
+  big up spud("Drake")
+  big up spud("the mandem")
+
+  chattin recursion works too, styll
+  big man ting factorial(n) {
+    ahlie (n <= 1) { dash 1 }
+    dash n * factorial(n - 1)
+  }
+
+  big up "6! is " + factorial(6)
+
+say less
