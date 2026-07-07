@@ -247,6 +247,9 @@ say less
   }
 
   function run() {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: 'run-script', title: 'Ran a script', event: true });
+    }
     clearOutput();
     try {
       SixLang.run(editor.value, {
